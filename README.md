@@ -100,8 +100,13 @@ All API endpoints are versioned under `/api/v1`.
 * `GET /`: Check server uptime and database connection status.
 
 # Screenshots
+
+### Sign Up / Registration Page
+<img src="screenshots/Signup_Interface.png" width="650" alt="Sign Up Interface" style="border-radius: 8px; border: 1px solid #30363d; margin-bottom: 20px;" />
+
 ### Dashboard Interface
-![Dashboard Preview](screenshots/dashboard_preview.png)
+<img src="screenshots/dashboard_preview.png" width="650" alt="Dashboard Interface" style="border-radius: 8px; border: 1px solid #30363d;" />
+
 
 # Scalability
 * **Service Decoupling**: Separation of controllers and services makes it easy to migrate modules into independent microservices.
