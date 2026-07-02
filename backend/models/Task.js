@@ -40,4 +40,11 @@ const taskSchema = new mongoose.Schema(
 
 const Task = mongoose.model('Task', taskSchema);
 
+// Optimize database read queries with indexes
+taskSchema.index({ owner: 1 });
+taskSchema.index({ status: 1 });
+taskSchema.index({ priority: 1 });
+taskSchema.index({ owner: 1, status: 1, priority: 1 });
+
 export default Task;
+

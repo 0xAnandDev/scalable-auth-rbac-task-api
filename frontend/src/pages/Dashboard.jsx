@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useAuth from '../hooks/useAuth';
+import useTasks from '../hooks/useTasks';
 
 const Dashboard = () => {
   const { user } = useAuth();
+  const { tasks, fetchTasks } = useTasks();
 
-  // Standard mock stats for visual demonstration (business logic not implemented yet)
+  useEffect(() => {
+    fetchTasks();
+  }, [fetchTasks]);
+
+  const totalTasks = tasks.length;
+  const inProgress = tasks.filter((t) => t.status === 'IN_PROGRESS').length;
+  const completed = tasks.filter((t) => t.status === 'COMPLETED').length;
+  const pending = tasks.filter((t) => t.status === 'PENDING').length;
+
   const stats = [
-    { title: 'Total Tasks', value: 12, color: 'var(--primary)', shadow: 'var(--shadow-glow)' },
-    { title: 'In Progress', value: 3, color: 'var(--warning)', shadow: 'none' },
-    { title: 'Completed', value: 8, color: 'var(--success)', shadow: 'none' },
-    { title: 'Pending Approval', value: 1, color: 'var(--error)', shadow: 'none' },
+    { title: 'Total Tasks', value: totalTasks, color: 'var(--primary)', shadow: 'var(--shadow-glow)' },
+    { title: 'In Progress', value: inProgress, color: 'var(--warning)', shadow: 'none' },
+    { title: 'Completed', value: completed, color: 'var(--success)', shadow: 'none' },
+    { title: 'Pending', value: pending, color: 'var(--primary)', shadow: 'none' },
   ];
 
   return (
@@ -18,6 +28,7 @@ const Dashboard = () => {
         <h1 style={styles.title}>Welcome back, {user?.name || 'User'}!</h1>
         <p style={styles.subtitle}>Here is an overview of your current task metrics and session parameters.</p>
       </header>
+
 
       {/* Grid containing metrics stat cards */}
       <section style={styles.statsGrid}>
