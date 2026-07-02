@@ -1,11 +1,8 @@
+import 'dotenv/config';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
 import User from '../models/User.js';
 import { ROLES } from '../utils/constants.js';
 import logger from '../utils/logger.js';
-
-// Load environment variables
-dotenv.config();
 
 /**
  * Seeds a default admin account into the database.
