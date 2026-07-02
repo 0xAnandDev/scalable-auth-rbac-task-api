@@ -331,14 +331,6 @@ A pre-configured Postman Collection is available in this repository at:
 
 ---
 
-## 🖼️ Screenshots & UI Previews
-
-### Dashboard Interface Layout
-A modern, dark-mode dashboard providing real-time task status overviews and advanced filtering interfaces:
-![Dashboard Analytics Preview](screenshots/dashboard_preview.png)
-
----
-
 ## 📈 Scalability Design Patterns
 
 This system was engineered with scalability and high-availability patterns in mind:
