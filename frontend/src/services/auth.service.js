@@ -11,10 +11,11 @@ const login = async (email, password) => {
 /**
  * Perform registration requests.
  */
-const register = async (name, email, password) => {
-  const response = await api.post('/auth/register', { name, email, password });
+const register = async (name, email, password, role) => {
+  const response = await api.post('/auth/register', { name, email, password, role });
   return response.data;
 };
+
 
 /**
  * Fetch profile details of current logged-in session.

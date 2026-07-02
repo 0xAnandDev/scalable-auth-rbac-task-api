@@ -16,7 +16,7 @@ const Dashboard = () => {
   const pending = tasks.filter((t) => t.status === 'PENDING').length;
 
   const stats = [
-    { title: 'Total Tasks', value: totalTasks, color: 'var(--primary)', shadow: 'var(--shadow-glow)' },
+    { title: user?.role === 'ADMIN' ? 'Total System Tasks' : 'Total Personal Tasks', value: totalTasks, color: 'var(--primary)', shadow: 'var(--shadow-glow)' },
     { title: 'In Progress', value: inProgress, color: 'var(--warning)', shadow: 'none' },
     { title: 'Completed', value: completed, color: 'var(--success)', shadow: 'none' },
     { title: 'Pending', value: pending, color: 'var(--primary)', shadow: 'none' },
@@ -25,8 +25,17 @@ const Dashboard = () => {
   return (
     <div style={styles.container}>
       <header style={styles.header}>
-        <h1 style={styles.title}>Welcome back, {user?.name || 'User'}!</h1>
-        <p style={styles.subtitle}>Here is an overview of your current task metrics and session parameters.</p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+          <h1 style={styles.title}>Welcome back, {user?.name || 'User'}!</h1>
+          {user?.role === 'ADMIN' && (
+            <span style={styles.adminBadge}>Admin Panel</span>
+          )}
+        </div>
+        <p style={styles.subtitle}>
+          {user?.role === 'ADMIN' 
+            ? 'Here is an overview of all tasks across the entire system.' 
+            : 'Here is an overview of your current task metrics and session parameters.'}
+        </p>
       </header>
 
 
@@ -92,6 +101,17 @@ const styles = {
     fontSize: '32px',
     fontWeight: '700',
     marginBottom: '8px',
+  },
+  adminBadge: {
+    backgroundColor: 'rgba(239, 68, 68, 0.15)',
+    color: 'var(--error)',
+    border: '1px solid var(--error)',
+    padding: '4px 10px',
+    borderRadius: 'var(--radius-sm)',
+    fontSize: '12px',
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: '0.05em',
   },
   subtitle: {
     fontSize: '16px',

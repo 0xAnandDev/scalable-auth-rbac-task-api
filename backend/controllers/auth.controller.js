@@ -33,7 +33,15 @@ export const login = asyncHandler(async (req, res) => {
  */
 export const getMe = asyncHandler(async (req, res) => {
   // req.user is set by the protect authentication middleware
+  const user = {
+    id: req.user._id,
+    name: req.user.name,
+    email: req.user.email,
+    role: req.user.role,
+  };
+  
   res.status(200).json(
-    new ApiResponse(200, { user: req.user }, 'User profile retrieved successfully')
+    new ApiResponse(200, { user }, 'User profile retrieved successfully')
   );
 });
+

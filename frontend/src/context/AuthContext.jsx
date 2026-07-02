@@ -56,10 +56,10 @@ export const AuthProvider = ({ children }) => {
   /**
    * Handle user registration.
    */
-  const handleRegister = async (name, email, password) => {
+  const handleRegister = async (name, email, password, role) => {
     setLoading(true);
     try {
-      const res = await authService.register(name, email, password);
+      const res = await authService.register(name, email, password, role);
       if (res.success && res.data.token) {
         localStorage.setItem('token', res.data.token);
         setUser(res.data.user);
@@ -74,6 +74,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     }
   };
+
 
   /**
    * Clear session cache and log out user.
